@@ -1,0 +1,56 @@
+name: Build docs
+
+# Builds the MkDocs Material site on GitHub's servers (no local Python needed).
+# After each push you get a downloadable "site" zip from the run's Artifacts.
+# Unzip it and upload its contents to docs.a11yscanfix.com via FileZilla.
+#
+# Optional: an auto-FTP step is included but disabled. To turn it on, add your
+# FTP credentials as repository secrets (Settings -> Secrets and variables ->
+# Actions) named FTP_SERVER, FTP_USERNAME, FTP_PASSWORD, then set
+# DEPLOY_FTP below to "true".
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch: {}   # lets you run it by hand from the Actions tab
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the files
+        uses: actions/checkout@v4
+
+      - name: Set up Python (on GitHub, not your PC)
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install MkDocs Material
+        run: pip install -r requirements.txt
+
+      - name: Build the site
+        run: mkdocs build --strict
+
+      - name: Upload the built site (downloadable zip)
+        uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: site/
+
+      # ---- OPTIONAL auto-upload to your server over FTP -------------------
+      # Set DEPLOY_FTP to "true" and add the three secrets to enable it.
+      - name: Deploy to server over FTP
+        if: ${{ vars.DEPLOY_FTP == 'true' }}
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./site/
+          # IMPORTANT: point this at the docs.a11yscanfix.com web root on your
+          # server. Confirm the exact path with your host before enabling.
+          server-dir: ./

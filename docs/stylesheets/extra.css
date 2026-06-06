@@ -1,0 +1,46 @@
+/* A11yScanFix docs - brand theme to match https://a11yscanfix.com
+   Navy #05386E, Green #2FBE8B, Blue #1C5FA8. DM Sans + Space Mono. */
+
+:root {
+  --md-primary-fg-color:        #05386E; /* navy header */
+  --md-primary-fg-color--light: #1C5FA8;
+  --md-primary-fg-color--dark:  #052a52;
+  --md-accent-fg-color:         #1C9E6E; /* green, links on hover */
+  --asf-green:                  #2FBE8B;
+  --asf-navy:                   #05386E;
+}
+
+/* Links use the brand green */
+.md-typeset a {
+  color: var(--asf-navy);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.md-typeset a:hover {
+  color: var(--md-accent-fg-color);
+}
+
+/* Brand green accent on the active nav item and the search highlight */
+.md-nav__link--active {
+  color: var(--md-accent-fg-color) !important;
+}
+
+/* PRO badge - use inline:  <span class="pro">PRO</span>  */
+.pro {
+  display: inline-block;
+  background: var(--asf-green);
+  color: #06351f;
+  font-size: .68em;
+  font-weight: 800;
+  letter-spacing: .06em;
+  padding: .12em .5em;
+  border-radius: 6px;
+  vertical-align: middle;
+  margin-left: .35em;
+}
+
+/* The "FILL IN" warnings stay loud even after build, so they are easy to
+   spot while reviewing. Remove the admonition once the spot is filled. */
+.md-typeset .admonition.warning {
+  border-left-color: #d63638;
+}

@@ -1,0 +1,99 @@
+site_name: A11yScanFix Documentation
+site_url: https://docs.a11yscanfix.com/
+site_description: Documentation for the A11yScanFix WordPress plugin - WCAG scans, automated fixes, and AI alt text. Free and Pro.
+site_author: WP Gang
+copyright: Copyright 2026 A11yScanFix by WP Gang
+
+# Built static site goes to ./site - upload that folder to your server
+# (docs.a11yscanfix.com). Run "mkdocs build" then upload, or "mkdocs serve"
+# to preview locally at http://127.0.0.1:8000.
+
+theme:
+  name: material
+  language: en
+  logo: assets/images/logo.svg
+  favicon: assets/images/favicon.ico
+  font:
+    text: DM Sans
+    code: Space Mono
+  features:
+    - navigation.sections
+    - navigation.top
+    - navigation.tracking
+    - navigation.indexes
+    - navigation.footer
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  palette:
+    # Light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    # Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+extra_css:
+  - stylesheets/extra.css
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+extra:
+  social:
+    - icon: fontawesome/solid/globe
+      link: https://a11yscanfix.com/
+    - icon: fontawesome/solid/envelope
+      link: mailto:hello@wpgang.com
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - getting-started/installation.md
+      - getting-started/quick-start.md
+      - getting-started/requirements.md
+  - Scanning:
+      - scanning/editor-scan.md
+      - scanning/site-scan.md
+      - scanning/standards-and-levels.md
+      - scanning/archives-cpt.md
+  - Fixers:
+      - fixers/overview.md
+      - fixers/free-fixers.md
+      - fixers/pro-fixers.md
+  - AI Alt Text:
+      - alt-text/overview.md
+      - alt-text/providers-and-keys.md
+      - alt-text/bulk-generate.md
+  - Dashboard:
+      - dashboard/overview.md
+      - dashboard/scan-log.md
+      - dashboard/dismiss-issues.md
+      - dashboard/trend-and-export.md
+      - dashboard/scheduled-report.md
+  - Accessibility Statement: accessibility-statement.md
+  - Settings & Security: settings/api-keys-and-security.md
+  - FAQ: faq.md
+  - What's in Pro: pro/whats-in-pro.md
+  - Changelog: changelog.md
