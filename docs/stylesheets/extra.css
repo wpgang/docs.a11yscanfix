@@ -1,46 +1,169 @@
-/* A11yScanFix docs - brand theme to match https://a11yscanfix.com
-   Navy #05386E, Green #2FBE8B, Blue #1C5FA8. DM Sans + Space Mono. */
+/* =====================================================================
+   A11yScanFix docs - brand theme to match https://a11yscanfix.com
+   Navy #05386E / #134B87, Green #2FBE8B / #27a578, DM Sans + Space Mono.
+   ===================================================================== */
 
 :root {
-  --md-primary-fg-color:        #05386E; /* navy header */
-  --md-primary-fg-color--light: #1C5FA8;
+  --asf-navy:        #05386E;
+  --asf-navy-2:      #134B87;
+  --asf-green:       #2FBE8B;
+  --asf-green-deep:  #27a578;
+  --asf-ink:         #1A1F2E;
+  --asf-muted:       #5a6e82;
+  --asf-paper:       #fafcfe;
+  --asf-card:        #ffffff;
+  --asf-line:        rgba(11,16,32,.10);
+  --asf-radius:      14px;
+
+  /* Material core hooks */
+  --md-primary-fg-color:        var(--asf-navy);
+  --md-primary-fg-color--light: var(--asf-navy-2);
   --md-primary-fg-color--dark:  #052a52;
-  --md-accent-fg-color:         #1C9E6E; /* green, links on hover */
-  --asf-green:                  #2FBE8B;
-  --asf-navy:                   #05386E;
+  --md-accent-fg-color:         var(--asf-green-deep);
+  --md-default-bg-color:        var(--asf-paper);
+  --md-typeset-a-color:         var(--asf-navy-2);
 }
 
-/* Links use the brand green */
-.md-typeset a {
+/* ---------- Typography ---------- */
+.md-typeset {
+  font-size: .78rem;
+  color: var(--asf-ink);
+  line-height: 1.7;
+}
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4 {
   color: var(--asf-navy);
+  font-weight: 800;
+  letter-spacing: -.015em;
+}
+.md-typeset h1 { font-size: 2.1rem; line-height: 1.1; margin-bottom: .6em; }
+.md-typeset h2 {
+  font-size: 1.5rem;
+  margin-top: 2.2em;
+  padding-bottom: .3em;
+  border-bottom: 1px solid var(--asf-line);
+}
+.md-typeset h3 { font-size: 1.15rem; margin-top: 1.6em; }
+
+/* ---------- Header ---------- */
+.md-header {
+  background: var(--asf-navy);
+  box-shadow: 0 2px 14px rgba(5,56,110,.25);
+}
+.md-header__title { font-weight: 700; letter-spacing: -.01em; }
+
+/* ---------- Links ---------- */
+.md-typeset a {
+  color: var(--asf-navy-2);
   text-decoration: underline;
   text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+  transition: color .15s ease;
 }
-.md-typeset a:hover {
-  color: var(--md-accent-fg-color);
-}
+.md-typeset a:hover { color: var(--asf-green-deep); }
 
-/* Brand green accent on the active nav item and the search highlight */
+/* ---------- Left/right nav ---------- */
+.md-nav__link:hover,
+.md-nav__link:focus { color: var(--asf-green-deep); }
+.md-nav__item .md-nav__link--active,
 .md-nav__link--active {
-  color: var(--md-accent-fg-color) !important;
+  color: var(--asf-green-deep) !important;
+  font-weight: 700;
 }
+.md-nav__title { font-weight: 800; color: var(--asf-navy); }
 
-/* PRO badge - use inline:  <span class="pro">PRO</span>  */
+/* ---------- Search ---------- */
+.md-search__form { border-radius: 999px; }
+[data-md-toggle=search]:checked ~ .md-header .md-search__form { border-radius: 14px 14px 0 0; }
+
+/* ---------- Tables ---------- */
+.md-typeset table:not([class]) {
+  border: 1px solid var(--asf-line);
+  border-radius: var(--asf-radius);
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(11,16,32,.04);
+}
+.md-typeset table:not([class]) th {
+  background: var(--asf-navy);
+  color: #fff;
+  font-weight: 700;
+}
+.md-typeset table:not([class]) tr:nth-child(even) { background: #f6f9fc; }
+
+/* ---------- Code ---------- */
+.md-typeset code {
+  background: rgba(5,56,110,.07);
+  color: #0c3a6b;
+  border-radius: 6px;
+  padding: .12em .4em;
+}
+.md-typeset pre > code {
+  border-radius: var(--asf-radius);
+}
+.highlight { border-radius: var(--asf-radius); }
+
+/* ---------- Admonitions / notes ---------- */
+.md-typeset .admonition,
+.md-typeset details {
+  border: 1px solid var(--asf-line);
+  border-left-width: 4px;
+  border-radius: var(--asf-radius);
+  box-shadow: 0 6px 20px -12px rgba(11,16,32,.25);
+  font-size: .76rem;
+}
+.md-typeset .admonition.note   { border-left-color: var(--asf-navy-2); }
+.md-typeset .admonition.note > .admonition-title { background: rgba(19,75,135,.08); }
+/* "FILL IN" warnings stay loud so they are easy to find while reviewing */
+.md-typeset .admonition.warning { border-left-color: #d94c3a; }
+.md-typeset .admonition.warning > .admonition-title { background: rgba(217,76,58,.10); }
+.md-typeset .admonition.info   { border-left-color: var(--asf-green-deep); }
+.md-typeset .admonition.info > .admonition-title { background: rgba(47,190,139,.12); }
+
+/* ---------- Buttons ---------- */
+.md-typeset .md-button {
+  background: var(--asf-navy-2);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  padding: .55em 1.2em;
+  box-shadow: 0 10px 30px -12px rgba(19,75,135,.6);
+}
+.md-typeset .md-button:hover { background: var(--asf-navy); color: #fff; }
+.md-typeset .md-button--primary {
+  background: var(--asf-green);
+  color: #052018;
+}
+.md-typeset .md-button--primary:hover { background: var(--asf-green-deep); color: #052018; }
+
+/* ---------- PRO badge:  <span class="pro">PRO</span> ---------- */
 .pro {
   display: inline-block;
   background: var(--asf-green);
   color: #06351f;
-  font-size: .68em;
+  font-size: .62em;
   font-weight: 800;
-  letter-spacing: .06em;
-  padding: .12em .5em;
+  letter-spacing: .08em;
+  padding: .18em .55em;
   border-radius: 6px;
   vertical-align: middle;
-  margin-left: .35em;
+  margin-left: .4em;
+  text-transform: uppercase;
 }
 
-/* The "FILL IN" warnings stay loud even after build, so they are easy to
-   spot while reviewing. Remove the admonition once the spot is filled. */
-.md-typeset .admonition.warning {
-  border-left-color: #d63638;
+/* ---------- Footer ---------- */
+.md-footer { background: var(--asf-navy); }
+.md-footer-meta { background: #052a52; }
+
+/* ---------- Content width ---------- */
+.md-grid { max-width: 70rem; }
+
+/* ---------- Dark mode keeps brand accents ---------- */
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #052a52;
+  --md-accent-fg-color:  var(--asf-green);
+  --md-typeset-a-color:  #6BEFC3;
 }
+[data-md-color-scheme="slate"] .md-typeset a:hover { color: var(--asf-green); }
