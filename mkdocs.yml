@@ -1,5 +1,8 @@
 site_name: A11yScanFix Documentation
 site_url: https://docs.a11yscanfix.com/
+# Relative .html links + assets, so the built site works from any folder
+# (web root, a subfolder, or opened directly) without broken links/styles.
+use_directory_urls: false
 site_description: Documentation for the A11yScanFix WordPress plugin - WCAG scans, automated fixes, and AI alt text. Free and Pro.
 site_author: WP Gang
 copyright: Copyright 2026 A11yScanFix by WP Gang
