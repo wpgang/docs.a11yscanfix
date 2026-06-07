@@ -1,25 +1,25 @@
 /* =====================================================================
    A11yScanFix docs - brand theme to match https://a11yscanfix.com
-   Navy #05386E / #134B87, Green #2FBE8B / #27a578, DM Sans + Space Mono.
+   Mint header + headings, navy links, yellow PRO badges. Light only.
    ===================================================================== */
 
 :root {
   --asf-navy:        #05386E;
   --asf-navy-2:      #134B87;
-  --asf-green:       #2FBE8B;
-  --asf-green-deep:  #27a578;
+  --asf-mint:        #2FBE8B;
+  --asf-mint-deep:   #27a578;
+  --asf-yellow:      #f0c040;  /* PRO badge, matches plugin */
+  --asf-yellow-line: #d4a920;
   --asf-ink:         #1A1F2E;
   --asf-muted:       #5a6e82;
   --asf-paper:       #fafcfe;
-  --asf-card:        #ffffff;
   --asf-line:        rgba(11,16,32,.10);
   --asf-radius:      14px;
 
   /* Material core hooks */
-  --md-primary-fg-color:        var(--asf-navy);
-  --md-primary-fg-color--light: var(--asf-navy-2);
-  --md-primary-fg-color--dark:  #052a52;
-  --md-accent-fg-color:         var(--asf-green-deep);
+  --md-primary-fg-color:        var(--asf-mint);   /* header background */
+  --md-primary-bg-color:        var(--asf-navy);   /* header text/icons */
+  --md-accent-fg-color:         var(--asf-mint-deep);
   --md-default-bg-color:        var(--asf-paper);
   --md-typeset-a-color:         var(--asf-navy-2);
 }
@@ -34,7 +34,7 @@
 .md-typeset h2,
 .md-typeset h3,
 .md-typeset h4 {
-  color: var(--asf-navy);
+  color: var(--asf-mint);            /* mint green headings */
   font-weight: 800;
   letter-spacing: -.015em;
 }
@@ -47,12 +47,17 @@
 }
 .md-typeset h3 { font-size: 1.15rem; margin-top: 1.6em; }
 
-/* ---------- Header ---------- */
+/* ---------- Header (mint, dark text) ---------- */
 .md-header {
-  background: var(--asf-navy);
-  box-shadow: 0 2px 14px rgba(5,56,110,.25);
+  background: var(--asf-mint);
+  color: var(--asf-navy);
+  box-shadow: 0 2px 14px rgba(47,190,139,.30);
 }
-.md-header__title { font-weight: 700; letter-spacing: -.01em; }
+.md-header__title { font-weight: 800; letter-spacing: -.01em; }
+.md-header__button,
+.md-header [class*="md-icon"] { color: var(--asf-navy); }
+.md-search__input { color: var(--asf-navy); }
+.md-search__input::placeholder { color: rgba(5,56,110,.6); }
 
 /* ---------- Links ---------- */
 .md-typeset a {
@@ -62,17 +67,26 @@
   text-decoration-thickness: 1px;
   transition: color .15s ease;
 }
-.md-typeset a:hover { color: var(--asf-green-deep); }
+.md-typeset a:hover { color: var(--asf-mint-deep); }
 
 /* ---------- Left/right nav ---------- */
 .md-nav__link:hover,
-.md-nav__link:focus { color: var(--asf-green-deep); }
+.md-nav__link:focus { color: var(--asf-mint-deep); }
 .md-nav__item .md-nav__link--active,
 .md-nav__link--active {
-  color: var(--asf-green-deep) !important;
+  color: var(--asf-mint-deep) !important;
   font-weight: 700;
 }
 .md-nav__title { font-weight: 800; color: var(--asf-navy); }
+
+/* First-level (section) items in UPPERCASE */
+.md-nav--primary > .md-nav__list > .md-nav__item > .md-nav__link,
+.md-nav--primary > .md-nav__list > .md-nav__item > label.md-nav__link {
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  font-weight: 800;
+  font-size: .68rem;
+}
 
 /* ---------- Search ---------- */
 .md-search__form { border-radius: 999px; }
@@ -99,9 +113,7 @@
   border-radius: 6px;
   padding: .12em .4em;
 }
-.md-typeset pre > code {
-  border-radius: var(--asf-radius);
-}
+.md-typeset pre > code { border-radius: var(--asf-radius); }
 .highlight { border-radius: var(--asf-radius); }
 
 /* ---------- Admonitions / notes ---------- */
@@ -115,10 +127,9 @@
 }
 .md-typeset .admonition.note   { border-left-color: var(--asf-navy-2); }
 .md-typeset .admonition.note > .admonition-title { background: rgba(19,75,135,.08); }
-/* "FILL IN" warnings stay loud so they are easy to find while reviewing */
 .md-typeset .admonition.warning { border-left-color: #d94c3a; }
 .md-typeset .admonition.warning > .admonition-title { background: rgba(217,76,58,.10); }
-.md-typeset .admonition.info   { border-left-color: var(--asf-green-deep); }
+.md-typeset .admonition.info   { border-left-color: var(--asf-mint-deep); }
 .md-typeset .admonition.info > .admonition-title { background: rgba(47,190,139,.12); }
 
 /* ---------- Buttons ---------- */
@@ -132,21 +143,19 @@
   box-shadow: 0 10px 30px -12px rgba(19,75,135,.6);
 }
 .md-typeset .md-button:hover { background: var(--asf-navy); color: #fff; }
-.md-typeset .md-button--primary {
-  background: var(--asf-green);
-  color: #052018;
-}
-.md-typeset .md-button--primary:hover { background: var(--asf-green-deep); color: #052018; }
+.md-typeset .md-button--primary { background: var(--asf-mint); color: #052018; }
+.md-typeset .md-button--primary:hover { background: var(--asf-mint-deep); color: #052018; }
 
-/* ---------- PRO badge:  <span class="pro">PRO</span> ---------- */
+/* ---------- PRO badge (yellow, like the plugin):  <span class="pro">PRO</span> ---------- */
 .pro {
   display: inline-block;
-  background: var(--asf-green);
-  color: #06351f;
+  background: var(--asf-yellow);
+  color: #1d2327;
+  border: 1px solid var(--asf-yellow-line);
   font-size: .62em;
   font-weight: 800;
   letter-spacing: .08em;
-  padding: .18em .55em;
+  padding: .16em .5em;
   border-radius: 6px;
   vertical-align: middle;
   margin-left: .4em;
@@ -159,11 +168,3 @@
 
 /* ---------- Content width ---------- */
 .md-grid { max-width: 70rem; }
-
-/* ---------- Dark mode keeps brand accents ---------- */
-[data-md-color-scheme="slate"] {
-  --md-primary-fg-color: #052a52;
-  --md-accent-fg-color:  var(--asf-green);
-  --md-typeset-a-color:  #6BEFC3;
-}
-[data-md-color-scheme="slate"] .md-typeset a:hover { color: var(--asf-green); }
